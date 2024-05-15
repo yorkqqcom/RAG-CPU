@@ -11,6 +11,7 @@ import os
 current_path = os.getcwd()
 print(current_path)
 model_path = str(current_path) + "/Qwen1.5-0.5B-Chat"
+model_name = "Qwen/Qwen1.5-0.5B-Chat"
 # from huggingface_hub import snapshot_download
 # if os.path.exists(model_path):
 #     snapshot_download(repo_id='Qwen/Qwen1.5-0.5B-Chat',
@@ -28,7 +29,7 @@ model_path = str(current_path) + "/Qwen1.5-0.5B-Chat"
 # )
 
 model = AutoModelForCausalLM.from_pretrained(
-    model_path,
+    model_name,
     # quantization_config=bnb_config,
     torch_dtype="auto",
     device_map="auto",
@@ -36,7 +37,7 @@ model = AutoModelForCausalLM.from_pretrained(
     cache_dir="/Qwen1.5-0.5B-Chat"
     # offload_folder="offload",
 )
-tokenizer = AutoTokenizer.from_pretrained(model_path,cache_dir="/Qwen1.5-0.5B-Chat")
+tokenizer = AutoTokenizer.from_pretrained(model_name,cache_dir="/Qwen1.5-0.5B-Chat")
 # from optimum.bettertransformer import BetterTransformer
 # model = BetterTransformer.transform(model)
 class Qwen(LLM, ABC):
