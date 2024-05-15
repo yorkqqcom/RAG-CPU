@@ -1,5 +1,8 @@
 可在CPU运行的本地RAG，采用Qwen0.5B和bge-small-zh-v1.5，
+
 配置要求：个人电脑，8G内存以上。
+
+该DEMO中包含了证券业相关制度文档和数据治理相关文档
 
 部署步骤
 
@@ -18,5 +21,9 @@ huggingface-cli download --resume-download Qwen/Qwen1.5-0.5B-Chat --local-dir Qw
 $env:HF_ENDPOINT = "https://hf-mirror.com"
 
 streamlit run .\appUI.py
+
+添加自己的文档
+将PDF文件放置RAG-FILES目录下，运行embedding-doc.py
+
 
 请注意，由于CPU性能限制，进行模型推理可能需要5-20分钟的处理时间。
