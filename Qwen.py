@@ -10,13 +10,13 @@ device = "cpu" # the device to load the model onto
 import os
 current_path = os.getcwd()
 print(current_path)
-model_path = str(current_path) + "\\Qwen1.5-0.5B-Chat"
-from huggingface_hub import snapshot_download
-if os.path.exists(model_path):
-    snapshot_download(repo_id='Qwen/Qwen1.5-0.5B-Chat',
-                      repo_type='model',
-                      local_dir='./Qwen1.5-0.5B-Chat/',
-                      resume_download=True)
+model_path = str(current_path) + "/Qwen1.5-0.5B-Chat"
+# from huggingface_hub import snapshot_download
+# if os.path.exists(model_path):
+#     snapshot_download(repo_id='Qwen/Qwen1.5-0.5B-Chat',
+#                       repo_type='model',
+#                       local_dir='./Qwen1.5-0.5B-Chat/',
+#                       resume_download=True)
 # model_path = str(current_path[1]) + "\\Qwen0.5int"
 #
 # bnb_config = BitsAndBytesConfig(
@@ -33,9 +33,10 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype="auto",
     device_map="auto",
     trust_remote_code=True,
+    cache_dir="/Qwen1.5-0.5B-Chat"
     # offload_folder="offload",
 )
-tokenizer = AutoTokenizer.from_pretrained(model_path,trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(model_path,cache_dir="/Qwen1.5-0.5B-Chat")
 # from optimum.bettertransformer import BetterTransformer
 # model = BetterTransformer.transform(model)
 class Qwen(LLM, ABC):
