@@ -18,3 +18,5 @@ huggingface-cli download --resume-download Qwen/Qwen1.5-0.5B-Chat --local-dir Qw
 $env:HF_ENDPOINT = "https://hf-mirror.com"
 
 streamlit run .\appUI.py
+
+请注意，由于CPU性能限制，进行模型推理可能需要5-20分钟的处理时间。
