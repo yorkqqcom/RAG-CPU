@@ -15,7 +15,7 @@ from huggingface_hub import snapshot_download
 if os.path.exists(model_path):
     snapshot_download(repo_id='Qwen/Qwen1.5-0.5B-Chat',
                       repo_type='model',
-                      local_dir='./Qwen/Qwen1.5-0.5B-Chat/',
+                      local_dir='./Qwen1.5-0.5B-Chat/',
                       resume_download=True)
 # model_path = str(current_path[1]) + "\\Qwen0.5int"
 #
