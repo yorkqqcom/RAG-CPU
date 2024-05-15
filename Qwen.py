@@ -7,7 +7,7 @@ from langchain.callbacks.manager import CallbackManagerForLLMRun
 
 
 device = "cpu" # the device to load the model onto
-model_name = "Qwen/Qwen1.5-0.5B-Chat"
+model_name = "Qwen/Qwen1.5-0.5B-Chat-GGUF"
 
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
