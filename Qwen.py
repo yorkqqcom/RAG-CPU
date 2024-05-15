@@ -1,22 +1,23 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer,BitsAndBytesConfig
+from transformers import AutoTokenizer,BitsAndBytesConfig
 from abc import ABC
-
+from ctransformers import AutoModelForCausalLM
 from langchain.llms.base import LLM
 from typing import Any, List, Mapping, Optional
 from langchain.callbacks.manager import CallbackManagerForLLMRun
 
 
 device = "cpu" # the device to load the model onto
-model_name = "Qwen/Qwen1.5-0.5B-Chat-GGUF"
+model_name = "Qwen/Qwen1.5-1.8B-Chat-GGUF"
 
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
     # quantization_config=bnb_config,
-    torch_dtype="auto",
-    device_map="auto",
-    trust_remote_code=True,
-    cache_dir="./Qwen1.5-0.5B-Chat"
+    # torch_dtype="auto",
+    # device_map="auto",
+    # trust_remote_code=True,
+    # cache_dir="./Qwen1.5-0.5B-Chat"
     # offload_folder="offload",
+    hf = True,
 )
 tokenizer = AutoTokenizer.from_pretrained(model_name,cache_dir="./Qwen1.5-0.5B-Chat")
 # from optimum.bettertransformer import BetterTransformer
