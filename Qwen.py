@@ -34,10 +34,10 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype="auto",
     device_map="auto",
     trust_remote_code=True,
-    cache_dir="/Qwen1.5-0.5B-Chat"
+    cache_dir="./Qwen1.5-0.5B-Chat"
     # offload_folder="offload",
 )
-tokenizer = AutoTokenizer.from_pretrained(model_name,cache_dir="/Qwen1.5-0.5B-Chat")
+tokenizer = AutoTokenizer.from_pretrained(model_name,cache_dir="./Qwen1.5-0.5B-Chat")
 # from optimum.bettertransformer import BetterTransformer
 # model = BetterTransformer.transform(model)
 class Qwen(LLM, ABC):
