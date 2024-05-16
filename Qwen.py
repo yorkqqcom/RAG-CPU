@@ -1,28 +1,22 @@
-from transformers import AutoTokenizer,BitsAndBytesConfig
+from transformers import AutoTokenizer,AutoModelForCausalLM
 from abc import ABC
-from ctransformers import AutoModelForCausalLM
 from langchain.llms.base import LLM
 from typing import Any, List, Mapping, Optional
 from langchain.callbacks.manager import CallbackManagerForLLMRun
-
-
+from huggingface_hub import hf_hub_download
+import os
 device = "cpu" # the device to load the model onto
-model_name = "Qwen/Qwen1.5-0.5B-Chat-GGUF"
 
-model = AutoModelForCausalLM.from_pretrained(
-    model_name,
-    # quantization_config=bnb_config,
-    # torch_dtype="auto",
-    # device_map="auto",
-    # trust_remote_code=True,
-    # cache_dir="./Qwen1.5-0.5B-Chat"
-    # offload_folder="offload",
-    model_file = "qwen1_5-0_5b-chat-q4_k_m.gguf",
-    hf = True,
-)
-tokenizer = AutoTokenizer.from_pretrained(model_name,cache_dir="./Qwen1.5-0.5B-Chat")
-# from optimum.bettertransformer import BetterTransformer
-# model = BetterTransformer.transform(model)
+run_path = os.getcwd()
+model_name = "Qwen/Qwen1.5-0.5B-Chat"
+model = AutoModelForCausalLM.from_pretrained(model_name,
+                                             device_map="auto",
+                                             torch_dtype="auto",
+                                             trust_remote_code=True,
+                                             cache_dir=run_path
+                                             )
+tokenizer = AutoTokenizer.from_pretrained(model_name,trust_remote_code=True)
+
 class Qwen(LLM, ABC):
      max_token: int = 10000
      temperature: float = 0.01
