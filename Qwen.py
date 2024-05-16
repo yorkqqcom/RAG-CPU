@@ -7,7 +7,7 @@ from langchain.callbacks.manager import CallbackManagerForLLMRun
 
 
 device = "cpu" # the device to load the model onto
-model_name = "Qwen/Qwen1.5-1.8B-Chat-GGUF"
+model_name = "Qwen/Qwen1.5-0.5B-Chat-GGUF"
 
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
@@ -17,6 +17,7 @@ model = AutoModelForCausalLM.from_pretrained(
     # trust_remote_code=True,
     # cache_dir="./Qwen1.5-0.5B-Chat"
     # offload_folder="offload",
+    model_file = "qwen1_5-0_5b-chat-q4_k_m.gguf",
     hf = True,
 )
 tokenizer = AutoTokenizer.from_pretrained(model_name,cache_dir="./Qwen1.5-0.5B-Chat")
