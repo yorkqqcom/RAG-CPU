@@ -1,5 +1,6 @@
 from transformers import AutoTokenizer,AutoModelForCausalLM
 from abc import ABC
+import torch
 from langchain.llms.base import LLM
 from typing import Any, List, Mapping, Optional
 from langchain.callbacks.manager import CallbackManagerForLLMRun
@@ -8,10 +9,18 @@ import os
 device = "cpu" # the device to load the model onto
 
 run_path = os.getcwd()
+
+# bnb_config = BitsAndBytesConfig(
+#     load_in_4bit= True,
+#     bnb_4bit_quant_type= "nf4",
+#     bnb_4bit_compute_dtype= torch.bfloat16,
+#     bnb_4bit_use_double_quant= False,
+# )
 model_name = "Qwen/Qwen1.5-0.5B-Chat"
 model = AutoModelForCausalLM.from_pretrained(model_name,
                                              device_map="auto",
-                                             torch_dtype="auto",
+                                             # quantization_config=bnb_config,
+                                             torch_dtype=torch.bfloat16,
                                              trust_remote_code=True,
                                              cache_dir=run_path
                                              )
