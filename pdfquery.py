@@ -5,7 +5,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_community.embeddings.huggingface import HuggingFaceEmbeddings
 # from dotenv import load_dotenv
 # load_dotenv()
-from langchain_openai import ChatOpenAI
+# from langchain_openai import ChatOpenAI
 from langchain.docstore.document import Document
 from typing import List
 from langchain_community.vectorstores import FAISS
