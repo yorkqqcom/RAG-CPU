@@ -3,8 +3,8 @@ import os
 from operator import itemgetter
 from langchain_core.prompts import PromptTemplate
 from langchain_community.embeddings.huggingface import HuggingFaceEmbeddings
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 from langchain_openai import ChatOpenAI
 from langchain.docstore.document import Document
 from typing import List
@@ -59,8 +59,8 @@ class PDFQuery:
             else:
                 load_merge.merge_from(loader)
         retriever = load_merge.as_retriever()
-        # llm = Qwen()
-        llm = ChatOpenAI()
+        llm = Qwen()
+        # llm = ChatOpenAI()
         prompt = PromptTemplate.from_template(
     """You are an assistant for question-answering tasks. Use the following retrieved context to answer the question in an expert manner. If you don’t know the answer, just say that you don’t know. Use three sentences maximum and keep the answer concise.
 Question: {question} 
