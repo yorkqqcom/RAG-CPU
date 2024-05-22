@@ -23,28 +23,27 @@ def display_messages():
         if is_user :
             message(msgs, is_user=is_user, key=str(i))
         else:
-            message(msgs[0], is_user=is_user, key=str(i))
             if (len(msgs[1]) > 0):
-                markdown_links = []
-                pattern = re.compile(r"'source': '(.+?)', 'page': (\d+)")
-                for item in msgs[1]:
-                    # Using regex to find all matches in the string
-                    print(item)
-                    matches = pattern.findall(item)
-                    for match in matches:
-                        source, page = match
-                        file_name = source.split('\\\\')[-1]
+                with st.expander(f"已经找到{len(msgs[1])}篇参考资料点击这里查看详细信息"):
+                    pattern = re.compile(r"'source': '(.+?)', 'page': (\d+)")
+                    for item in msgs[1]:
+                        # Using regex to find all matches in the string
+                        print(item)
+                        matches = pattern.findall(item)
+                        for match in matches:
+                            source, page = match
+                            file_name = source.split('\\\\')[-1]
 
-                        # Creating markdown link
-                        source = os.getcwd()+'/RAG-FILES/' + file_name
+                            # Creating markdown link
+                            source = os.getcwd()+'/RAG-FILES/' + file_name
 
-                        file_path = source
-                        file_label = f"{file_name} - Page {page}"
-                        link_str = get_binary_file_downloader_html(file_path, file_label)
-                        if link_str != "":
-                            st.markdown(get_binary_file_downloader_html(file_path, file_label),
-                                    unsafe_allow_html=True)
-
+                            file_path = source
+                            file_label = f"{file_name} - Page {page}"
+                            link_str = get_binary_file_downloader_html(file_path, file_label)
+                            if link_str != "":
+                                st.markdown(get_binary_file_downloader_html(file_path, file_label),
+                                        unsafe_allow_html=True)
+                message(msgs[0], is_user=is_user, key=str(i))
     st.session_state["thinking_spinner"] = st.empty()
 
 class Document:
@@ -67,6 +66,8 @@ def process_input():
             sources = re.findall(pattern, query_docs_str)
 
         st.session_state["messages"].append((user_text, True))
+
+
         msgs = [query_text, sources]
         st.session_state["messages"].append((msgs, False))
 
@@ -84,9 +85,6 @@ def main():
 
     display_messages()
     st.text_input("Message", key="user_input",  on_change=process_input)
-
-    # st.divider()
-    # st.markdown("Source code: [Github](https://github.com/Anil-matcha/ChatPDF)")
 
 
 if __name__ == "__main__":

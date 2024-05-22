@@ -16,8 +16,8 @@ run_path = os.getcwd()
 #     bnb_4bit_compute_dtype= torch.bfloat16,
 #     bnb_4bit_use_double_quant= False,
 # )
-# model_name = "Qwen/Qwen1.5-0.5B-Chat"
-model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+model_name = "Qwen/Qwen1.5-0.5B-Chat"
+# model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
 model = AutoModelForCausalLM.from_pretrained(model_name,
                                              device_map="auto",
                                              # quantization_config=bnb_config,
@@ -25,7 +25,6 @@ model = AutoModelForCausalLM.from_pretrained(model_name,
                                              trust_remote_code=True,
                                              cache_dir=run_path
                                              )
-
 tokenizer = AutoTokenizer.from_pretrained(model_name,trust_remote_code=True)
 
 class Qwen(LLM, ABC):

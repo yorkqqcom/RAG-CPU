@@ -1,3 +1,5 @@
+2024/5/22 更新 增加了检索sourse清单及下载功能
+
 可在CPU运行的本地RAG，采用Qwen0.5B和bge-small-zh-v1.5，
 
 配置要求：个人电脑，8G内存以上。
@@ -29,4 +31,4 @@ streamlit run .\appUI.py
 请注意，由于CPU性能限制，进行模型推理可能需要5-20分钟的处理时间。
 运行截图如下：
 
-![img_1.png](img_1.png)
+![img_2.png](img_2.png)
