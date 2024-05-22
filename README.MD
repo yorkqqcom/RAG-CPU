@@ -1,6 +1,7 @@
 2024/5/22 更新 增加了检索sourse清单及下载功能
 
-可在CPU运行的本地RAG，采用Qwen0.5B和bge-small-zh-v1.5，
+
+快速搭建自己本地的RAG应用。可在CPU运行的本地RAG，采用Qwen0.5B和bge-small-zh-v1.5，
 
 配置要求：个人电脑，8G内存以上。
 
